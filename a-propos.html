@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Youri Samut - Mathématiques</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADR0lEQVR4nO1WTWhcVRT+zrlvminRloBhZu57SSqIkWm7EgoWFDeCLgRXCiKIXbgtbrp35UYQwdJloSAKrt24cNWFi7gqBIVsEt5kpmB5aSA2ydx7PxdzZ/oYMpN5rX9gP3jM5Z7vnPPNuee8d4Gn+L9DZuxLZU0A4QTbJBgfANDICxP2x8a0pE/EnSQKALbb7c9E5DLJfVX93Xt/o9/vb3Y6nXRvb+9rACsADkkeA4CIPANggeTdXq93HQCbzeZlY8xVkkuqetZ7/2O/3/8Sw8qMq5KcqEpkAcCSiLylqgghvLm+vv7K8vLyw7Isn4v2l40x5wHAe/+biNxT1WcBcGVlxXrvfzDGPO+cOwbwSxRZD+12+3qWZYMsy2itfadqazabH2dZ5qy1rtVqvV2taJZln+R5TmvtwFr70awcOmU/AQBV3SBpAJDkeQDI8/zMsEiSAjAATKyIrK2tjf7lavRxxpiNuGfqCCAAOOcCAMoQDQAwxlQ7vcpno9EghpkbUWRwzvlqzHkFnIQ6UzA36gj4W/DfFqCqA8SZjecK7/2pRxFCSOOSIjLz7TezCY0x+yQdAIjIOQASm/BEbG1thei3NNKSJMl+NWYtAQcHBzsish8FXATAxcXFMMVn7Efy4vCH93Z2du7P4M8UoGVZPiD5cwz6+urq6gubm5vHiPM/Jg/fFQrAWWtfBXAJw6m5A2DErz2GAgAhhK9IQkTOOudu5Xn+IgAvIg9GRGNMCSDkeX6J5E0RSUMInuSNamWmJpkBBRBardanqvqFMUa9947kN7En3o3BvyWZiMh7xhh47/dE5Fq3272NiY9PXQFjEdbaKyQ/EJE3AFwQEZDDIxcRIelJbojITyRv93q9X09LPq+AsYi4TvM8N977a6r6eRRxVVW/K4riqMI7NfmINA9C5BoAKIriIYBqd98viuIQw49YMm9yYMp9YIYIAPAAQPIQj5rrj7g+rhGvloDRvdBYaz8keQ7AFTw6wvezLLsAYLfb7X5fR8C8PSAA2Ol00rIs76rqSySPABxF+4KIpCTv7O7uvjYh+i8RMEae52cGg4GGEMR7rwBgjAlJkoQ0TcP29vZh3Zj/Kh7nknGazxPd/Z/iH8ef0FNcE9Lp4RcAAAAASUVORK5CYII=">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<style>
+body, h1,h2,h3,h4,h5,h6 {
+  font-family: "Computer Modern Bright", sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+}
+
+/* Sidebar */
+.w3-sidebar {
+  width: 200px;
+  background: #ffffff;
+  border-right: none;
+  box-shadow: 3px 0 8px rgba(0,0,0,0.15);
+  z-index: 4;
+}
+
+/* Bande décorative verticale */
+#decorative-band {
+  position: fixed;
+  top: 0;
+  left: 200px;
+  width: 60px;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+  box-shadow: 3px 0 8px rgba(0,0,0,0.15);
+}
+
+#decorative-band img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+#main {
+  margin-left: 260px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+@media only screen and (max-width: 992px) {
+  #main { margin-left: 0 }
+  #decorative-band { display: none; }
+  #mySidebar { padding-top: 70px; }
+}
+
+
+
+/* Sidebar links */
+.w3-sidebar a.w3-bar-item {
+  color: #333;
+  font-size: 14px;
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.w3-sidebar a.w3-bar-item:hover {
+  background-color: #f0f0f0;
+  color: #000;
+  border-left: 3px solid #555;
+}
+
+/* Sidebar title */
+.sidebar-title {
+  padding: 32px 16px 24px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  color: #111;
+}
+
+/* Dropdown menu */
+.dropdown-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  padding: 12px 16px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.dropdown-btn:hover {
+  background-color: #f0f0f0;
+  color: #000;
+  border-left: 3px solid #555;
+}
+
+.dropdown-btn .fa {
+  font-size: 11px;
+  transition: transform 0.2s;
+}
+
+.dropdown-btn.open .fa {
+  transform: rotate(180deg);
+}
+
+.dropdown-container {
+  display: none;
+  background-color: #fafafa;
+  border-left: none;
+}
+
+.dropdown-container a {
+  padding: 10px 16px 10px 28px !important;
+  font-size: 13px !important;
+  font-weight: normal !important;
+  color: #555 !important;
+  border-left: 3px solid transparent !important;
+}
+
+.dropdown-container a:hover {
+  color: #111 !important;
+  background-color: #efefef !important;
+  border-left: 3px solid #999 !important;
+}
+
+/* Regular nav links bold */
+.w3-sidebar .nav-link {
+  font-weight: bold;
+}
+
+/* Header */
+header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Content */
+.content-section {
+  margin: 24px;
+  padding: 32px;
+}
+
+hr.section-rule {
+  border: none;
+  border-top: 1px solid #ddd;
+  width: 200px;
+  margin: 16px auto 24px 0;
+}
+
+h2 {
+  color: #111;
+}
+
+p {
+  color: #444;
+  line-height: 1.7;
+}
+
+/* Small screen navbar */
+#myNavbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid #ddd;
+}
+
+#myNavbar a {
+  color: #333 !important;
+}
+
+#myNavbar a:hover {
+  background-color: #f0f0f0 !important;
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-top" style="z-index:3;" id="mySidebar">
+  <div class="sidebar-title w3-hide-small">
+    <a href="index.html" style="display:block; padding:20px 0; text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" style="width:80px; height:96px; display:block; margin:0 auto;">
+        <!-- Ψ (Psi) en police système, rendu comme un glyphe plein -->
+        <text x="50" y="105" font-family="serif" font-size="115" text-anchor="middle" fill="#1a1a1a">Ψ</text>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Classe préparatoire dropdown -->
+  <button class="dropdown-btn" onclick="toggleDropdown('prepDropdown', this)">
+    Classe préparatoire <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="prepDropdown" class="dropdown-container">
+    <a href="cpge/cours.html" class="w3-bar-item w3-button" onclick="w3_close()">Notes de cours et TD</a>
+    <a href="cpge/kholles.html" class="w3-bar-item w3-button" onclick="w3_close()">Programmes de kholles</a>
+    <a href="cpge/devoirs.html" class="w3-bar-item w3-button" onclick="w3_close()">Devoirs</a>
+  </div>
+
+<button class="dropdown-btn" onclick="toggleDropdown('upecDropdown', this)">
+  UPEC – EPISEN <i class="fa fa-caret-down"></i>
+</button>
+<div id="upecDropdown" class="dropdown-container">
+  <a href="episen/outils-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Outils mathématiques S1</a>
+  <a href="episen/analyses-numeriques.html" class="w3-bar-item w3-button" onclick="w3_close()">Analyse numérique S2</a>
+</div>
+
+  <!-- Divers dropdown -->
+  <button class="dropdown-btn" onclick="toggleDropdown('diversDropdown', this)">
+    Divers <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="diversDropdown" class="dropdown-container">
+    <a href="divers/formulaires-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Formulaires mathématiques</a>
+    <a href="divers/papiers-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Papiers de mathématiques</a>
+    <a href="divers/liens-utiles.html" class="w3-bar-item w3-button" onclick="w3_close()">Liens utiles</a>
+    <a href="divers/soit-ou-soient.html" class="w3-bar-item w3-button" onclick="w3_close()">Soit ou soient ?</a>
+  </div>
+
+  <button class="dropdown-btn" onclick="toggleDropdown('archivesDropdown', this)">
+  Archives de lycée <i class="fa fa-caret-down"></i>
+</button>
+<div id="archivesDropdown" class="dropdown-container">
+  <a href="archives/terminale-specialite.html" class="w3-bar-item w3-button" onclick="w3_close()">Terminale spécialité</a>
+</div>
+
+  <a href="a-propos.html" onclick="w3_close()" class="w3-bar-item w3-button nav-link">À propos</a>
+</nav>
+
+<!-- Bande décorative verticale -->
+<div id="decorative-band">
+  <img src="deco/bandeco.jpg">
+</div>
+
+<!-- Topbar mobile (cachée sur grands écrans) -->
+<div class="w3-top w3-hide-large" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#fff; border-bottom:1px solid #ddd; z-index:4;">
+  <a href="index.html" style="font-size:1.5em; text-decoration:none; color:#1a1a1a;">Ψ</a>
+  <button onclick="w3_open()" style="background:none; border:none; cursor:pointer; padding:4px;">
+    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
+    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
+    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
+  </button>
+</div>
+
+<!-- Overlay mobile pour fermer la sidebar -->
+<div id="sidebarOverlay" onclick="w3_close()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:2; background:rgba(0,0,0,0.3);"></div>
+
+
+<!-- Contenu principal -->
+<div class="w3-padding-large" id="main">
+
+  <div class="content-section" id="cv">
+    <h2>Curriculum vitae</h2>
+    <hr class="section-rule">
+    <iframe
+  src="assets/pdfjs/web/viewer.html?file=../../../docs/CV.pdf"
+  width="555px"
+  height="786px"
+  style="border:none; display:block; margin:0 auto;">
+</iframe>
+  </div>
+
+</div>
+
+
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("sidebarOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("sidebarOverlay").style.display = "none";
+}
+
+function toggleDropdown(id, btn) {
+  var el = document.getElementById(id);
+  var isOpen = el.style.display === "block";
+  // Fermer tous les dropdowns
+  document.querySelectorAll('.dropdown-container').forEach(function(d) {
+    d.style.display = "none";
+  });
+  document.querySelectorAll('.dropdown-btn').forEach(function(b) {
+    b.classList.remove('open');
+  });
+  // Ouvrir celui cliqué si pas déjà ouvert
+  if (!isOpen) {
+    el.style.display = "block";
+    btn.classList.add('open');
+  }
+}
+</script>
+
+</body>
+</html>
