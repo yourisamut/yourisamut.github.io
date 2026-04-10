@@ -53,7 +53,7 @@ body {
 }
 
 @media only screen and (max-width: 992px) {
-  #main { margin-left: 0 }
+  #main { margin-left: 0; padding-top: 72px; }
   #decorative-band { display: none; }
   #mySidebar { padding-top: 70px; }
 }
@@ -143,35 +143,87 @@ body {
   font-weight: bold;
 }
 
-/* Header */
-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #ddd;
-}
-
 /* Content */
 .content-section {
-  background-color: #ffffff;
-  margin: 24px;
-  padding: 32px;
-  border-radius: 2px;
-  border: 1px solid #e0e0e0;
+  max-width: 720px;
+  padding: 32px 24px;
+}
+
+@media only screen and (max-width: 600px) {
+  .content-section {
+    padding: 20px 12px;
+  }
 }
 
 hr.section-rule {
   border: none;
   border-top: 1px solid #ddd;
   width: 200px;
-  margin: 16px auto 24px 0;
+  margin: 14px 0 28px 0;
 }
 
-h2 {
+h1 {
+  font-size: 1.55em;
+  font-weight: normal;
   color: #111;
+  margin: 0 0 6px 0;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
 }
 
 p {
   color: #444;
-  line-height: 1.7;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+ul {
+  color: #444;
+  line-height: 1.9;
+  padding-left: 22px;
+  margin: 16px 0;
+}
+
+ul li {
+  margin-bottom: 6px;
+}
+
+.breadcrumb {
+  font-size: 0.82em;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.callout {
+  background: #ffffff;
+  border-left: 3px solid #aaa;
+  padding: 20px 24px;
+  margin: 28px 0;
+  border-radius: 0 2px 2px 0;
+}
+
+.callout-title {
+  font-size: 0.82em;
+  font-weight: bold;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 12px 0;
+}
+
+.callout ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.reference {
+  margin-top: 40px;
+  font-size: 0.82em;
+  color: #999;
+  border-top: 1px solid #ccc;
+  padding-top: 16px;
 }
 
 /* Small screen navbar */
@@ -196,7 +248,6 @@ p {
   <div class="sidebar-title w3-hide-small">
     <a href="../index.html" style="display:block; padding:20px 0; text-decoration:none;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" style="width:80px; height:96px; display:block; margin:0 auto;">
-        <!-- Ψ (Psi) en police système, rendu comme un glyphe plein -->
         <text x="50" y="105" font-family="serif" font-size="115" text-anchor="middle" fill="#1a1a1a">Ψ</text>
       </svg>
     </a>
@@ -212,31 +263,31 @@ p {
     <a href="../cpge/devoirs.html" class="w3-bar-item w3-button" onclick="w3_close()">Devoirs</a>
   </div>
 
-<button class="dropdown-btn" onclick="toggleDropdown('upecDropdown', this)">
-  UPEC – EPISEN <i class="fa fa-caret-down"></i>
-</button>
-<div id="upecDropdown" class="dropdown-container">
-  <a href="../episen/outils-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Outils mathématiques S1</a>
-  <a href="../episen/analyses-numeriques.html" class="w3-bar-item w3-button" onclick="w3_close()">Analyse numérique S2</a>
-</div>
+  <button class="dropdown-btn" onclick="toggleDropdown('upecDropdown', this)">
+    UPEC – EPISEN <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="upecDropdown" class="dropdown-container">
+    <a href="../episen/outils-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Outils mathématiques S1</a>
+    <a href="../episen/analyses-numeriques.html" class="w3-bar-item w3-button" onclick="w3_close()">Analyse numérique S2</a>
+  </div>
 
   <!-- Divers dropdown -->
   <button class="dropdown-btn" onclick="toggleDropdown('diversDropdown', this)">
     Divers <i class="fa fa-caret-down"></i>
   </button>
   <div id="diversDropdown" class="dropdown-container">
-    <a href="formulaires-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Formulaires mathématiques</a>
-    <a href="papiers-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Papiers de mathématiques</a>
+    <a href="formulaires-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Formulaires mathématiques</a>
+    <a href="papiers-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Papiers de mathématiques</a>
     <a href="liens-utiles.html" class="w3-bar-item w3-button" onclick="w3_close()">Liens utiles</a>
     <a href="soit-ou-soient.html" class="w3-bar-item w3-button" onclick="w3_close()">Soit ou soient ?</a>
   </div>
 
   <button class="dropdown-btn" onclick="toggleDropdown('archivesDropdown', this)">
-  Archives de lycée <i class="fa fa-caret-down"></i>
-</button>
-<div id="archivesDropdown" class="dropdown-container">
-  <a href="../archives/terminale-specialite.html" class="w3-bar-item w3-button" onclick="w3_close()">Terminale spécialité</a>
-</div>
+    Archives de lycée <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="archivesDropdown" class="dropdown-container">
+    <a href="../archives/terminale-specialite.html" class="w3-bar-item w3-button" onclick="w3_close()">Terminale spécialité</a>
+  </div>
 
   <a href="../a-propos.html" onclick="w3_close()" class="w3-bar-item w3-button nav-link">À propos</a>
 </nav>
@@ -262,6 +313,52 @@ p {
 <!-- Contenu principal -->
 <div class="w3-padding-large" id="main">
 
+  <div class="content-section" id="cours">
+
+    <p class="breadcrumb">Divers</p>
+    <h1>« Soit A et B » ou « Soient A et B » ?</h1>
+    <hr class="section-rule">
+
+    <p>En mathématiques, on rencontre souvent des formulations du type :</p>
+
+    <ul>
+      <li><em>Soit A et B deux objets…</em></li>
+      <li><em>Soient A et B deux objets…</em></li>
+    </ul>
+
+    <p>La question se pose : faut-il écrire <strong>soit</strong> ou <strong>soient</strong> ?</p>
+
+    <p>
+      Le <em>Bon Usage</em> de Grevisse et Goosse (13<sup>e</sup> éd., § 901, d–e) apporte une réponse éclairante.
+      Lorsque <em>soit</em> a le sens de <em>« supposons, prenons »</em>, il joue le rôle
+      d'<strong>introducteur</strong> et sa valeur verbale est estompée. On le laisse alors
+      <strong>invariable</strong>, ce qui justifie l'usage de <em>soit A et B…</em>
+    </p>
+
+    <p>
+      Cependant, certains auteurs dans le domaine mathématique préfèrent traiter <em>soit</em> comme
+      un véritable verbe, et l'accorder au pluriel devant plusieurs sujets : <em>soient A et B…</em>
+    </p>
+
+    <div class="callout">
+      <p class="callout-title">En résumé</p>
+      <ul>
+        <strong>« Soit A et B »</strong> et <strong>« Soit A et B »</strong> sont deux formulations parfaitement correctes.
+        
+      </ul>
+    </div>
+
+    <p>
+      Les deux graphies sont donc recevables, et le choix relève davantage de la préférence
+      stylistique que d'une règle absolue.
+    </p>
+
+    <p class="reference">
+      Référence : Grevisse &amp; Goosse, <em>Le Bon Usage</em>, 13<sup>e</sup> éd., § 901, d–e.
+    </p>
+
+  </div>
+
 </div>
 
 
@@ -279,14 +376,12 @@ function w3_close() {
 function toggleDropdown(id, btn) {
   var el = document.getElementById(id);
   var isOpen = el.style.display === "block";
-  // Fermer tous les dropdowns
   document.querySelectorAll('.dropdown-container').forEach(function(d) {
     d.style.display = "none";
   });
   document.querySelectorAll('.dropdown-btn').forEach(function(b) {
     b.classList.remove('open');
   });
-  // Ouvrir celui cliqué si pas déjà ouvert
   if (!isOpen) {
     el.style.display = "block";
     btn.classList.add('open');
@@ -296,5 +391,3 @@ function toggleDropdown(id, btn) {
 
 </body>
 </html>
-
-
