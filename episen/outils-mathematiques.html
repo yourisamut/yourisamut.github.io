@@ -9,533 +9,116 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
 <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 <style>
-body, h1,h2,h3,h4,h5,h6 {
-  font-family: "Computer Modern Bright", sans-serif;
+body, h1,h2,h3,h4,h5,h6 { font-family: "Computer Modern Bright", sans-serif; }
+body { background-color: #f4f4f4; }
+.w3-sidebar { width:200px; background:#ffffff; border-right:none; box-shadow:3px 0 8px rgba(0,0,0,0.15); z-index:4; }
+#decorative-band { position:fixed; top:0; left:200px; width:60px; height:100%; z-index:2; overflow:hidden; box-shadow:3px 0 8px rgba(0,0,0,0.15); }
+#decorative-band img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+#main { margin-left:260px; background-color:#f4f4f4; min-height:100vh; }
+@media only screen and (max-width:992px) { #main { margin-left:0; } #decorative-band { display:none; } #mySidebar { padding-top:70px; } }
+@media (max-width:600px) { #cours { margin-top:6em; } }
+@media (max-width:992px) {
+  html, body { overflow-x:hidden !important; max-width:100vw !important; }
+  #cours { margin-top:70px !important; }
+  #tab-td, #tab-chapitres { max-width:100% !important; margin:0 !important; }
+  .accord-body { width:100% !important; overflow:hidden !important; }
+  .accord-body iframe { display:block !important; width:100% !important; max-width:100% !important; height:calc(100vw * 1.414) !important; }
+  .content-section { margin:0 !important; padding:16px 8px !important; }
 }
-
-body {
-  background-color: #f4f4f4;
-}
-
-/* Sidebar */
-.w3-sidebar {
-  width: 200px;
-  background: #ffffff;
-  border-right: none;
-  box-shadow: 3px 0 8px rgba(0,0,0,0.15);
-  z-index: 4;
-}
-
-/* Bande décorative verticale */
-#decorative-band {
-  position: fixed;
-  top: 0;
-  left: 200px;
-  width: 60px;
-  height: 100%;
-  z-index: 2;
-  overflow: hidden;
-  box-shadow: 3px 0 8px rgba(0,0,0,0.15);
-}
-
-#decorative-band img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-#main {
-  margin-left: 260px;
-  background-color: #f4f4f4;
-  min-height: 100vh;
-}
-
-@media only screen and (max-width: 992px) {
-  #main { margin-left: 0 }
-  #decorative-band { display: none; }
-  #mySidebar { padding-top: 70px; }
-}
-
-@media (max-width: 600px) {
-  #cours {
-    margin-top: 6em;
-  }
-}
-
-@media (max-width: 992px) {
-  /* Bloquer tout scroll horizontal */
-  html, body {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
-  }
-
-  /* Décaler le contenu sous la topbar */
-  #cours {
-    margin-top: 70px !important;
-  }
-
-  /* Accordéon pleine largeur */
-  #tab-td,
-  #tab-chapitres {
-    max-width: 100% !important;
-    margin: 0 !important;
-  }
-
-  /* Contenir l'iframe strictement */
-  .accord-body {
-    width: 100% !important;
-    overflow: hidden !important;
-  }
-
-  /* iframe pleine largeur, ratio A4 */
-  .accord-body iframe {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: calc(100vw * 1.414) !important;
-  }
-
-  .content-section {
-    margin: 0 !important;
-    padding: 16px 8px !important;
-  }
-}
-
-/* Sidebar links */
-.w3-sidebar a.w3-bar-item {
-  color: #333;
-  font-size: 14px;
-  padding: 12px 16px;
-  display: block;
-  text-decoration: none;
-  border-left: 3px solid transparent;
-  transition: all 0.2s;
-}
-
-.w3-sidebar a.w3-bar-item:hover {
-  background-color: #f0f0f0;
-  color: #000;
-  border-left: 3px solid #555;
-}
-
-/* Sidebar title */
-.sidebar-title {
-  padding: 32px 16px 24px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-  color: #111;
-}
-
-/* Dropdown menu */
-.dropdown-btn {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background: none;
-  border: none;
-  font-family: "Montserrat", sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  padding: 12px 16px;
-  border-left: 3px solid transparent;
-  transition: all 0.2s;
-  text-align: left;
-  box-sizing: border-box;
-}
-
-.dropdown-btn:hover {
-  background-color: #f0f0f0;
-  color: #000;
-  border-left: 3px solid #555;
-}
-
-.dropdown-btn .fa {
-  font-size: 11px;
-  transition: transform 0.2s;
-}
-
-.dropdown-btn.open .fa {
-  transform: rotate(180deg);
-}
-
-.dropdown-container {
-  display: none;
-  background-color: #fafafa;
-  border-left: none;
-}
-
-.dropdown-container a {
-  padding: 10px 16px 10px 28px !important;
-  font-size: 13px !important;
-  font-weight: normal !important;
-  color: #555 !important;
-  border-left: 3px solid transparent !important;
-}
-
-.dropdown-container a:hover {
-  color: #111 !important;
-  background-color: #efefef !important;
-  border-left: 3px solid #999 !important;
-}
-
-/* Regular nav links bold */
-.w3-sidebar .nav-link {
-  font-weight: bold;
-}
-
-/* Header */
-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Content */
-.content-section {
-  margin: 24px;
-  padding: 32px;
-}
-
-hr.section-rule {
-  border: none;
-  border-top: 1px solid #ddd;
-  width: 200px;
-  margin: 16px auto 24px 0;
-}
-
-h2 {
-  color: #111;
-}
-
-p {
-  color: #444;
-  line-height: 1.7;
-}
-
-/* Small screen navbar */
-#myNavbar {
-  background: #ffffff !important;
-  border-bottom: 1px solid #ddd;
-}
-
-#myNavbar a {
-  color: #333 !important;
-}
-
-#myNavbar a:hover {
-  background-color: #f0f0f0 !important;
-}
+.w3-sidebar a.w3-bar-item { color:#333; font-size:14px; padding:12px 16px; display:block; text-decoration:none; border-left:3px solid transparent; transition:all 0.2s; }
+.w3-sidebar a.w3-bar-item:hover { background-color:#f0f0f0; color:#000; border-left:3px solid #555; }
+.sidebar-title { padding:32px 16px 24px; text-align:center; border-bottom:1px solid #eee; color:#111; }
+.dropdown-btn { cursor:pointer; display:flex; justify-content:space-between; align-items:center; width:100%; background:none; border:none; font-family:"Montserrat",sans-serif; font-size:14px; font-weight:bold; color:#333; padding:12px 16px; border-left:3px solid transparent; transition:all 0.2s; text-align:left; box-sizing:border-box; }
+.dropdown-btn:hover { background-color:#f0f0f0; color:#000; border-left:3px solid #555; }
+.dropdown-btn .fa { font-size:11px; transition:transform 0.2s; }
+.dropdown-btn.open .fa { transform:rotate(180deg); }
+.dropdown-container { display:none; background-color:#fafafa; border-left:none; }
+.dropdown-container a { padding:10px 16px 10px 28px !important; font-size:13px !important; font-weight:normal !important; color:#555 !important; border-left:3px solid transparent !important; }
+.dropdown-container a:hover { color:#111 !important; background-color:#efefef !important; border-left:3px solid #999 !important; }
+.w3-sidebar .nav-link { font-weight:bold; }
+.content-section { margin:24px; padding:32px; }
+hr.section-rule { border:none; border-top:1px solid #ddd; width:200px; margin:16px auto 24px 0; }
+h2 { color:#111; }
+p { color:#444; line-height:1.7; }
+.accord-item { border:0.5px solid #ddd; margin-bottom:4px; border-radius:4px; overflow:hidden; }
+.accord-header { padding:0.8em 1em; cursor:pointer; font-size:1em; display:flex; align-items:center; gap:0.6em; background:#ececec; transition:background 0.15s; }
+.accord-header:hover { background:#e2e2e2; }
+.accord-body { display:none; padding:0; }
 </style>
 </head>
 <body>
 
-<!-- Sidebar -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-top" style="z-index:3;" id="mySidebar">
-  <div class="sidebar-title w3-hide-small">
-    <a href="../index.html" style="display:block; padding:20px 0; text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" style="width:80px; height:96px; display:block; margin:0 auto;">
-        <!-- Ψ (Psi) en police système, rendu comme un glyphe plein -->
-        <text x="50" y="105" font-family="serif" font-size="115" text-anchor="middle" fill="#1a1a1a">Ψ</text>
-      </svg>
-    </a>
-  </div>
+<div id="sidebar-container"></div>
 
-  <!-- Classe préparatoire dropdown -->
-  <button class="dropdown-btn" onclick="toggleDropdown('prepDropdown', this)">
-    Classe préparatoire <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="prepDropdown" class="dropdown-container">
-    <a href="../cpge/cours.html" class="w3-bar-item w3-button" onclick="w3_close()">Notes de cours et TD</a>
-    <a href="../cpge/kholles.html" class="w3-bar-item w3-button" onclick="w3_close()">Programmes de kholles</a>
-    <a href="../cpge/devoirs.html" class="w3-bar-item w3-button" onclick="w3_close()">Devoirs</a>
-  </div>
-
-<button class="dropdown-btn" onclick="toggleDropdown('upecDropdown', this)">
-  UPEC – EPISEN <i class="fa fa-caret-down"></i>
-</button>
-<div id="upecDropdown" class="dropdown-container">
-  <a href="utils-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Outils mathématiques S1</a>
-  <a href="analyses-numeriques.html" class="w3-bar-item w3-button" onclick="w3_close()">Analyse numérique S2</a>
-</div>
-
-  <!-- Divers dropdown -->
-  <button class="dropdown-btn" onclick="toggleDropdown('diversDropdown', this)">
-    Divers <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="diversDropdown" class="dropdown-container">
-    <a href="../divers/formulaires-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Formulaires mathématiques</a>
-    <a href="../divers/papiers-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Papiers de mathématiques</a>
-    <a href="../divers/liens-utiles.html" class="w3-bar-item w3-button" onclick="w3_close()">Liens utiles</a>
-    <a href="../divers/soit-ou-soient.html" class="w3-bar-item w3-button" onclick="w3_close()">Soit ou soient ?</a>
-  </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('archivesDropdown', this)">
-  Archives de lycée <i class="fa fa-caret-down"></i>
-</button>
-<div id="archivesDropdown" class="dropdown-container">
-  <a href="../archives/terminale-specialite.html" class="w3-bar-item w3-button" onclick="w3_close()">Terminale spécialité</a>
-</div>
-
-  <a href="../a-propos.html" onclick="w3_close()" class="w3-bar-item w3-button nav-link">À propos</a>
-</nav>
-
-<!-- Bande décorative verticale -->
-<div id="decorative-band">
-  <img src="../deco/bandeco.jpg">
-</div>
-
-<!-- Topbar mobile (cachée sur grands écrans) -->
-<div class="w3-top w3-hide-large" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#fff; border-bottom:1px solid #ddd; z-index:4;">
-  <a href="../index.html" style="font-size:1.5em; text-decoration:none; color:#1a1a1a;">Ψ</a>
-  <button onclick="w3_open()" style="background:none; border:none; cursor:pointer; padding:4px;">
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-  </button>
-</div>
-
-<!-- Overlay mobile pour fermer la sidebar -->
-<div id="sidebarOverlay" onclick="w3_close()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:2; background:rgba(0,0,0,0.3);"></div>
-
-<!-- Contenu principal -->
 <div class="w3-padding-large" id="main">
-
-  <!-- Contenu principal -->
   <div class="content-section" id="cours">
     <h2>EPISEN – Outils mathématiques S1</h2>
     <hr class="section-rule">
-
     <p>Vous trouverez ici mes enseignements dispensés au semestre 1 en outils mathématiques.</p>
-
     <p>Le <a href="../docs/episenS1/bookES1.pdf" style="color:#222;">polycopié de cours</a> dans son intégralité.</p>
-    
 
-    
+    <div style="display:flex; gap:1em; margin:2em 0 1em; justify-content:center;">
+      <button onclick="switchTab('td')" id="btn-td" style="padding:0.6em 1.6em; border-radius:8px; border:none; background:#111; color:#fff; font-size:1em; cursor:pointer; font-weight:600;">Travaux dirigés</button>
+      <button onclick="switchTab('chapitres')" id="btn-chapitres" style="padding:0.6em 1.6em; border-radius:8px; border:none; background:#ccc; color:#111; font-size:1em; cursor:pointer; font-weight:600;">Chapitres de cours</button>
+    </div>
 
-<!-- Onglets -->
-<div style="display:flex; gap:1em; margin:2em 0 1em; justify-content:center;">
-  <button onclick="switchTab('td')" id="btn-td"
-    style="padding:0.6em 1.6em; border-radius:8px; border:none; background:#111; color:#fff; font-size:1em; cursor:pointer; font-weight:600;">
-    Travaux dirigés
-  </button>
-  <button onclick="switchTab('chapitres')" id="btn-chapitres"
-    style="padding:0.6em 1.6em; border-radius:8px; border:none; background:#ccc; color:#111; font-size:1em; cursor:pointer; font-weight:600;">
-    Chapitres de cours
-  </button>
-</div>
+    <div id="tab-td" style="max-width:555px; margin:0 auto;">
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD1 – Rappels d'algèbre et d'analyse</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD1episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD2 – Intégrales et primitives</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD2episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD3 – Outils de comparaison</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD3episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD4 – Séries numériques</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD4episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD5 – Intégrales généralisées</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD5episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD6 – Optimisation</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD6episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD7 – Intégrales multiples</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD7episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD8 – Analyse vectorielle</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD8episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+    </div>
 
-<!-- Accordéon TD -->
-<div id="tab-td" style="max-width:555px; margin:0 auto;">
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> TD1 – Rappels d'algèbre et d'analyse
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD1episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> TD2 – Intégrales et primitives
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD2episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> TD3 – Outils de comparaison
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD3episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> TD4 – Séries numériques
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD4episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> TD5 – Intégrales généralisées
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD5episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> TD6 – Optimisation
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD6episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> TD7 – Intégrales multiples
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD7episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> TD8 – Analyse vectorielle
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/TD8episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
+    <div id="tab-chapitres" style="display:none; max-width:555px; margin:0 auto;">
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> Chapitre 1 – Rappels d'algèbre et d'analyse</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH1episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> Chapitre 2 – Calcul intégral</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH2episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> Chapitre 3 – Relations de comparaison</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH3episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> Chapitre 4 – Séries numériques</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH4episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> Chapitre 5 – Intégrales impropres</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH5episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> Chapitre 6 – Optimisation</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH6episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> Chapitre 7 – Intégrales multiples</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH7episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
     </div>
   </div>
 </div>
-
-<!-- Accordéon Chapitres -->
-<div id="tab-chapitres" style="display:none; max-width:555px; margin:0 auto;">
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> Chapitre 1 – Rappels d'algèbre et d'analyse
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH1episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> Chapitre 2 – Calcul intégral
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH2episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> Chapitre 3 – Relations de comparaison
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH3episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> Chapitre 4 – Séries numériques
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH4episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> Chapitre 5 – Intégrales impropres
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH5episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> Chapitre 6 – Optimisation
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH6episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-  <div class="accord-item">
-    <div class="accord-header" onclick="toggleAccord(this)">
-      <i class="fa fa-file-pdf-o"></i> Chapitre 7 – Intégrales multiples
-    </div>
-    <div class="accord-body">
-      <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/episenS1/CH7episenS1.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-    </div>
-  </div>
-</div>
-
-<style>
-.accord-item {
-  border: 0.5px solid #ddd;
-  margin-bottom: 4px;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.accord-header {
-  padding: 0.8em 1em;
-  cursor: pointer;
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  gap: 0.6em;
-  background: #ececec;
-  transition: background 0.15s;
-}
-.accord-header:hover {
-  background: #e2e2e2;
-}
-.accord-body {
-  display: none;
-  padding: 0;
-}
-</style>
 
 <script>
+fetch('/sidebar.html')
+  .then(res => res.text())
+  .then(html => { document.getElementById('sidebar-container').innerHTML = html; })
+  .catch(err => console.error('Erreur chargement sidebar :', err));
+
+function w3_open() { document.getElementById("mySidebar").style.display="block"; document.getElementById("sidebarOverlay").style.display="block"; }
+function w3_close() { document.getElementById("mySidebar").style.display="none"; document.getElementById("sidebarOverlay").style.display="none"; }
+function toggleDropdown(id, btn) {
+  var el = document.getElementById(id);
+  var isOpen = el.style.display === "block";
+  document.querySelectorAll('.dropdown-container').forEach(function(d) { d.style.display="none"; });
+  document.querySelectorAll('.dropdown-btn').forEach(function(b) { b.classList.remove('open'); });
+  if (!isOpen) { el.style.display="block"; btn.classList.add('open'); }
+}
 function toggleAccord(header) {
   var body = header.nextElementSibling;
   var isOpen = body.style.display === 'block';
   var allBodies = header.closest('[id^="tab-"]').querySelectorAll('.accord-body');
-  allBodies.forEach(function(b) { b.style.display = 'none'; });
+  allBodies.forEach(function(b) { b.style.display='none'; });
   if (!isOpen) {
-    body.style.display = 'block';
+    body.style.display='block';
     var iframe = body.querySelector('iframe');
-    if (iframe && !iframe.src) {
-      iframe.src = iframe.dataset.src;
-    }
+    if (iframe && !iframe.src) { iframe.src = iframe.dataset.src; }
   }
 }
-
 function switchTab(tab) {
-  document.getElementById('tab-td').style.display = tab === 'td' ? 'block' : 'none';
-  document.getElementById('tab-chapitres').style.display = tab === 'chapitres' ? 'block' : 'none';
-  document.getElementById('btn-td').style.background = tab === 'td' ? '#111' : '#ccc';
-  document.getElementById('btn-td').style.color = tab === 'td' ? '#fff' : '#111';
-  document.getElementById('btn-chapitres').style.background = tab === 'chapitres' ? '#111' : '#ccc';
-  document.getElementById('btn-chapitres').style.color = tab === 'chapitres' ? '#fff' : '#111';
+  document.getElementById('tab-td').style.display = tab==='td' ? 'block' : 'none';
+  document.getElementById('tab-chapitres').style.display = tab==='chapitres' ? 'block' : 'none';
+  document.getElementById('btn-td').style.background = tab==='td' ? '#111' : '#ccc';
+  document.getElementById('btn-td').style.color = tab==='td' ? '#fff' : '#111';
+  document.getElementById('btn-chapitres').style.background = tab==='chapitres' ? '#111' : '#ccc';
+  document.getElementById('btn-chapitres').style.color = tab==='chapitres' ? '#fff' : '#111';
 }
 </script>
-
-
-<script>
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("sidebarOverlay").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("sidebarOverlay").style.display = "none";
-}
-
-function toggleDropdown(id, btn) {
-  var el = document.getElementById(id);
-  var isOpen = el.style.display === "block";
-  // Fermer tous les dropdowns
-  document.querySelectorAll('.dropdown-container').forEach(function(d) {
-    d.style.display = "none";
-  });
-  document.querySelectorAll('.dropdown-btn').forEach(function(b) {
-    b.classList.remove('open');
-  });
-  // Ouvrir celui cliqué si pas déjà ouvert
-  if (!isOpen) {
-    el.style.display = "block";
-    btn.classList.add('open');
-  }
-}
-</script>
-
 </body>
 </html>

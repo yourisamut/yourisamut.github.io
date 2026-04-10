@@ -9,586 +9,167 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
 <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 <style>
-body, h1,h2,h3,h4,h5,h6 {
-  font-family: "Computer Modern Bright", sans-serif;
+body, h1,h2,h3,h4,h5,h6 { font-family: "Computer Modern Bright", sans-serif; }
+body { background-color: #f4f4f4; }
+.w3-sidebar { width:200px; background:#ffffff; border-right:none; box-shadow:3px 0 8px rgba(0,0,0,0.15); z-index:4; }
+#decorative-band { position:fixed; top:0; left:200px; width:60px; height:100%; z-index:2; overflow:hidden; box-shadow:3px 0 8px rgba(0,0,0,0.15); }
+#decorative-band img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+#main { margin-left:260px; background-color:#f4f4f4; min-height:100vh; }
+@media only screen and (max-width:992px) { #main { margin-left:0; } #decorative-band { display:none; } #mySidebar { padding-top:70px; } }
+@media (max-width:600px) { #cours { margin-top:6em; } }
+@media (max-width:992px) {
+  html, body { overflow-x:hidden !important; max-width:100vw !important; }
+  #cours { margin-top:70px !important; }
+  #tab-td { max-width:100% !important; margin:0 !important; }
+  .accord-body { width:100% !important; overflow:hidden !important; }
+  .accord-body iframe { display:block !important; width:100% !important; max-width:100% !important; height:calc(100vw * 1.414) !important; }
+  .content-section { margin:0 !important; padding:16px 8px !important; }
+  .formulaires-grid { grid-template-columns:1fr !important; }
 }
-
-body {
-  background-color: #f4f4f4;
-}
-
-/* Sidebar */
-.w3-sidebar {
-  width: 200px;
-  background: #ffffff;
-  border-right: none;
-  box-shadow: 3px 0 8px rgba(0,0,0,0.15);
-  z-index: 4;
-}
-
-/* Bande décorative verticale */
-#decorative-band {
-  position: fixed;
-  top: 0;
-  left: 200px;
-  width: 60px;
-  height: 100%;
-  z-index: 2;
-  overflow: hidden;
-  box-shadow: 3px 0 8px rgba(0,0,0,0.15);
-}
-
-#decorative-band img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-#main {
-  margin-left: 260px;
-  background-color: #f4f4f4;
-  min-height: 100vh;
-}
-
-@media only screen and (max-width: 992px) {
-  #main { margin-left: 0 }
-  #decorative-band { display: none; }
-  #mySidebar { padding-top: 70px; }
-}
-
-@media (max-width: 600px) {
-  #cours { margin-top: 6em; }
-}
-
-@media (max-width: 992px) {
-  html, body {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
-  }
-  #cours { margin-top: 70px !important; }
-  #tab-td { max-width: 100% !important; margin: 0 !important; }
-  .accord-body {
-    width: 100% !important;
-    overflow: hidden !important;
-  }
-  .accord-body iframe {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: calc(100vw * 1.414) !important;
-  }
-  .content-section {
-    margin: 0 !important;
-    padding: 16px 8px !important;
-  }
-  .formulaires-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* Sidebar links */
-.w3-sidebar a.w3-bar-item {
-  color: #333;
-  font-size: 14px;
-  padding: 12px 16px;
-  display: block;
-  text-decoration: none;
-  border-left: 3px solid transparent;
-  transition: all 0.2s;
-}
-.w3-sidebar a.w3-bar-item:hover {
-  background-color: #f0f0f0;
-  color: #000;
-  border-left: 3px solid #555;
-}
-
-.sidebar-title {
-  padding: 32px 16px 24px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-  color: #111;
-}
-
-.dropdown-btn {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background: none;
-  border: none;
-  font-family: "Montserrat", sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  padding: 12px 16px;
-  border-left: 3px solid transparent;
-  transition: all 0.2s;
-  text-align: left;
-  box-sizing: border-box;
-}
-.dropdown-btn:hover {
-  background-color: #f0f0f0;
-  color: #000;
-  border-left: 3px solid #555;
-}
-.dropdown-btn .fa {
-  font-size: 11px;
-  transition: transform 0.2s;
-}
-.dropdown-btn.open .fa {
-  transform: rotate(180deg);
-}
-
-.dropdown-container {
-  display: none;
-  background-color: #fafafa;
-  border-left: none;
-}
-.dropdown-container a {
-  padding: 10px 16px 10px 28px !important;
-  font-size: 13px !important;
-  font-weight: normal !important;
-  color: #555 !important;
-  border-left: 3px solid transparent !important;
-}
-.dropdown-container a:hover {
-  color: #111 !important;
-  background-color: #efefef !important;
-  border-left: 3px solid #999 !important;
-}
-
-.w3-sidebar .nav-link { font-weight: bold; }
-
-header { background-color: #ffffff; border-bottom: 1px solid #ddd; }
-
-.content-section {
-  margin: 24px;
-  padding: 32px;
-}
-
-hr.section-rule {
-  border: none;
-  border-top: 1px solid #ddd;
-  width: 200px;
-  margin: 16px auto 24px 0;
-}
-
-h2 { color: #111; }
-p { color: #444; line-height: 1.7; }
-
-/* Accordéon */
-.accord-item {
-  border: 0.5px solid #ddd;
-  margin-bottom: 4px;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.accord-header {
-  padding: 0.8em 1em;
-  cursor: pointer;
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  gap: 0.6em;
-  background: #ececec;
-  transition: background 0.15s;
-}
-.accord-header:hover { background: #e2e2e2; }
-.accord-body { display: none; padding: 0; }
-
-/* ── Grille de cartes TP Python (copié de formulaires-mathématiques.html) ── */
-.formulaires-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.formulaire-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 2px;
-  padding: 22px 24px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.formulaire-card:hover {
-  border-color: #bbb;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-.card-number {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  color: #bbb;
-  margin-bottom: 8px;
-}
-.card-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 8px;
-}
-.card-desc {
-  font-size: 0.9rem;
-  color: #555;
-  line-height: 1.65;
-  margin: 0;
-}
-.card-link {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 0.85rem;
-  color: #555;
-  text-decoration: none;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 1px;
-  transition: color 0.2s, border-color 0.2s;
-}
-.card-link:hover {
-  color: #111;
-  border-color: #888;
-}
-
-/* Small screen navbar */
-#myNavbar { background: #ffffff !important; border-bottom: 1px solid #ddd; }
-#myNavbar a { color: #333 !important; }
-#myNavbar a:hover { background-color: #f0f0f0 !important; }
+.w3-sidebar a.w3-bar-item { color:#333; font-size:14px; padding:12px 16px; display:block; text-decoration:none; border-left:3px solid transparent; transition:all 0.2s; }
+.w3-sidebar a.w3-bar-item:hover { background-color:#f0f0f0; color:#000; border-left:3px solid #555; }
+.sidebar-title { padding:32px 16px 24px; text-align:center; border-bottom:1px solid #eee; color:#111; }
+.dropdown-btn { cursor:pointer; display:flex; justify-content:space-between; align-items:center; width:100%; background:none; border:none; font-family:"Montserrat",sans-serif; font-size:14px; font-weight:bold; color:#333; padding:12px 16px; border-left:3px solid transparent; transition:all 0.2s; text-align:left; box-sizing:border-box; }
+.dropdown-btn:hover { background-color:#f0f0f0; color:#000; border-left:3px solid #555; }
+.dropdown-btn .fa { font-size:11px; transition:transform 0.2s; }
+.dropdown-btn.open .fa { transform:rotate(180deg); }
+.dropdown-container { display:none; background-color:#fafafa; border-left:none; }
+.dropdown-container a { padding:10px 16px 10px 28px !important; font-size:13px !important; font-weight:normal !important; color:#555 !important; border-left:3px solid transparent !important; }
+.dropdown-container a:hover { color:#111 !important; background-color:#efefef !important; border-left:3px solid #999 !important; }
+.w3-sidebar .nav-link { font-weight:bold; }
+header { background-color:#ffffff; border-bottom:1px solid #ddd; }
+.content-section { margin:24px; padding:32px; }
+hr.section-rule { border:none; border-top:1px solid #ddd; width:200px; margin:16px auto 24px 0; }
+h2 { color:#111; }
+p { color:#444; line-height:1.7; }
+.accord-item { border:0.5px solid #ddd; margin-bottom:4px; border-radius:4px; overflow:hidden; }
+.accord-header { padding:0.8em 1em; cursor:pointer; font-size:1em; display:flex; align-items:center; gap:0.6em; background:#ececec; transition:background 0.15s; }
+.accord-header:hover { background:#e2e2e2; }
+.accord-body { display:none; padding:0; }
+.formulaires-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px; margin-top:24px; }
+.formulaire-card { background-color:#ffffff; border:1px solid #e0e0e0; border-radius:2px; padding:22px 24px; transition:border-color 0.2s, box-shadow 0.2s; }
+.formulaire-card:hover { border-color:#bbb; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.card-number { font-size:0.72rem; letter-spacing:0.1em; color:#bbb; margin-bottom:8px; }
+.card-title { font-size:1rem; font-weight:600; color:#111; margin-bottom:8px; }
+.card-desc { font-size:0.9rem; color:#555; line-height:1.65; margin:0; }
+.card-link { display:inline-block; margin-top:14px; font-size:0.85rem; color:#555; text-decoration:none; border-bottom:1px solid #ddd; padding-bottom:1px; transition:color 0.2s, border-color 0.2s; }
+.card-link:hover { color:#111; border-color:#888; }
+#myNavbar { background:#ffffff !important; border-bottom:1px solid #ddd; }
+#myNavbar a { color:#333 !important; }
+#myNavbar a:hover { background-color:#f0f0f0 !important; }
 </style>
 </head>
 <body>
 
-<!-- Sidebar -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-top" style="z-index:3;" id="mySidebar">
-  <div class="sidebar-title w3-hide-small">
-    <a href="../index.html" style="display:block; padding:20px 0; text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" style="width:80px; height:96px; display:block; margin:0 auto;">
-        <text x="50" y="105" font-family="serif" font-size="115" text-anchor="middle" fill="#1a1a1a">Ψ</text>
-      </svg>
-    </a>
-  </div>
+<div id="sidebar-container"></div>
 
-  <button class="dropdown-btn" onclick="toggleDropdown('prepDropdown', this)">
-    Classe préparatoire <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="prepDropdown" class="dropdown-container">
-    <a href="../cpge/cours.html" class="w3-bar-item w3-button" onclick="w3_close()">Notes de cours et TD</a>
-    <a href="../cpge/kholles.html" class="w3-bar-item w3-button" onclick="w3_close()">Programmes de kholles</a>
-    <a href="../cpge/devoirs.html" class="w3-bar-item w3-button" onclick="w3_close()">Devoirs</a>
-  </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('upecDropdown', this)">
-    UPEC – EPISEN <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="upecDropdown" class="dropdown-container">
-    <a href="../episen/outils-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Outils mathématiques S1</a>
-    <a href="../episen/analyses-numeriques.html" class="w3-bar-item w3-button" onclick="w3_close()">Analyse numérique S2</a>
-  </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('diversDropdown', this)">
-    Divers <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="diversDropdown" class="dropdown-container">
-    <a href="../divers/formulaires-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Formulaires mathématiques</a>
-    <a href="../divers/papiers-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Papiers de mathématiques</a>
-    <a href="../divers/liens-utiles.html" class="w3-bar-item w3-button" onclick="w3_close()">Liens utiles</a>
-    <a href="../divers/soit-ou-soient.html" class="w3-bar-item w3-button" onclick="w3_close()">Soit ou soient ?</a>
-  </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('archivesDropdown', this)">
-    Archives de lycée <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="archivesDropdown" class="dropdown-container">
-    <a href="terminale-specialite.html" class="w3-bar-item w3-button" onclick="w3_close()">Terminale spécialité</a>
-  </div>
-
-  <a href="../a-propos.html" onclick="w3_close()" class="w3-bar-item w3-button nav-link">À propos</a>
-</nav>
-
-<!-- Bande décorative verticale -->
-<div id="decorative-band">
-  <img src="../deco/bandeco.jpg">
-</div>
-
-<!-- Topbar mobile -->
-<div class="w3-top w3-hide-large" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#fff; border-bottom:1px solid #ddd; z-index:4;">
-  <a href="../index.html" style="font-size:1.5em; text-decoration:none; color:#1a1a1a;">Ψ</a>
-  <button onclick="w3_open()" style="background:none; border:none; cursor:pointer; padding:4px;">
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-  </button>
-</div>
-
-<!-- Overlay mobile -->
-<div id="sidebarOverlay" onclick="w3_close()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:2; background:rgba(0,0,0,0.3);"></div>
-
-<!-- Contenu principal -->
 <div class="w3-padding-large" id="main">
-
   <div class="content-section" id="cours">
     <h2>Terminale spécialité mathématiques</h2>
     <hr class="section-rule">
-
     <p>Vous trouverez ici quelques documents que j'ai utilisés pour mes cours de spécialité mathématiques en terminale au lycée Champlain à Chennevières-sur-Marne durant l'année scolaire 2024-2025.</p>
 
-    <!-- Onglets -->
     <div style="display:flex; gap:1em; margin:2em 0 1em; justify-content:center;">
-      <button onclick="switchTab('td')" id="btn-td"
-        style="padding:0.6em 1.6em; border-radius:8px; border:none; background:#111; color:#fff; font-size:1em; cursor:pointer; font-weight:600;">
-        Travaux dirigés
-      </button>
-      <button onclick="switchTab('chapitres')" id="btn-chapitres"
-        style="padding:0.6em 1.6em; border-radius:8px; border:none; background:#ccc; color:#111; font-size:1em; cursor:pointer; font-weight:600;">
-        TP Python
-      </button>
+      <button onclick="switchTab('td')" id="btn-td" style="padding:0.6em 1.6em; border-radius:8px; border:none; background:#111; color:#fff; font-size:1em; cursor:pointer; font-weight:600;">Travaux dirigés</button>
+      <button onclick="switchTab('chapitres')" id="btn-chapitres" style="padding:0.6em 1.6em; border-radius:8px; border:none; background:#ccc; color:#111; font-size:1em; cursor:pointer; font-weight:600;">TP Python</button>
     </div>
 
-    <!-- Accordéon TD -->
     <div id="tab-td" style="max-width:555px; margin:0 auto;">
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD0 – Rappels sur les suites
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD0term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD1 – Suites et raisonnement par récurrence
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD1term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD2 – Géométrie dans l'espace
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD2term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD3 – Limite d'une suite
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD3term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD4 – Coordonnées dans l'espace
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD4term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD5 – Lois binomiales
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD5term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD6 – Dérivation et convexité
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD6term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD7 – Orthogonalité
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD7term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD8 – Limites d'une fonction
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD8term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD9 – Logarithme népérien
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD9term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD10 – Continuité
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD10term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD11 – Primitives et équations différentielles
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD11term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD12 – Combinatoire et dénombrement
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD12term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD13 – Intégration
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD13term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
-      <div class="accord-item">
-        <div class="accord-header" onclick="toggleAccord(this)">
-          <i class="fa fa-file-pdf-o"></i> TD14 – Sommes de variables aléatoires
-        </div>
-        <div class="accord-body">
-          <iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD14term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe>
-        </div>
-      </div>
-
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD0 – Rappels sur les suites</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD0term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD1 – Suites et raisonnement par récurrence</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD1term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD2 – Géométrie dans l'espace</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD2term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD3 – Limite d'une suite</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD3term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD4 – Coordonnées dans l'espace</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD4term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD5 – Lois binomiales</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD5term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD6 – Dérivation et convexité</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD6term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD7 – Orthogonalité</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD7term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD8 – Limites d'une fonction</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD8term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD9 – Logarithme népérien</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD9term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD10 – Continuité</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD10term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD11 – Primitives et équations différentielles</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD11term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD12 – Combinatoire et dénombrement</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD12term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD13 – Intégration</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD13term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
+      <div class="accord-item"><div class="accord-header" onclick="toggleAccord(this)"><i class="fa fa-file-pdf-o"></i> TD14 – Sommes de variables aléatoires</div><div class="accord-body"><iframe data-src="../assets/pdfjs/web/viewer.html?file=../../../docs/tdterm/TD14term.pdf" width="555px" height="786px" style="border:none; display:block;"></iframe></div></div>
     </div>
 
-    <!-- ── Grille de cartes TP Python ── -->
     <div id="tab-chapitres" style="display:none;">
-
       <div class="formulaires-grid">
-
         <div class="formulaire-card">
           <div class="card-number">TP 01</div>
           <div class="card-title">Suites et récurrences</div>
           <p class="card-desc">Implémentation d'algorithmes de calcul de termes de suites définies par récurrence et visualisation de leur convergence.</p>
           <a href="https://github.com/yourisamut/TPspemathsterm/blob/main/TP%20Suites%20et%20re%CC%81currences.ipynb" class="card-link" target="_blank" rel="noopener"><i class="fa fa-github" style="margin-right:5px;"></i>Voir sur GitHub →</a>
         </div>
-
         <div class="formulaire-card">
           <div class="card-number">TP 02</div>
           <div class="card-title">Limites de suites</div>
           <p class="card-desc">Exploration numérique du comportement asymptotique de suites et illustration graphique de la notion de limite.</p>
           <a href="https://github.com/yourisamut/TPspemathsterm/blob/main/TP%20Introduction%20a%CC%80%20la%20notion%20de%20limite.ipynb" class="card-link" target="_blank" rel="noopener"><i class="fa fa-github" style="margin-right:5px;"></i>Voir sur GitHub →</a>
         </div>
-
         <div class="formulaire-card">
           <div class="card-number">TP 03</div>
           <div class="card-title">Problème de surréservation</div>
           <p class="card-desc">Modélisation probabiliste d'un problème de gestion de capacité, simulation et calcul de la loi binomiale.</p>
           <a href="https://github.com/yourisamut/TPspemathsterm/blob/main/TP%20Un%20proble%CC%80me%20de%20surre%CC%81servation.ipynb" class="card-link" target="_blank" rel="noopener"><i class="fa fa-github" style="margin-right:5px;"></i>Voir sur GitHub →</a>
         </div>
-
         <div class="formulaire-card">
           <div class="card-number">TP 04</div>
           <div class="card-title">Approximation du logarithme népérien</div>
           <p class="card-desc">Calcul approché de ln par des méthodes numériques itératives et étude de la vitesse de convergence.</p>
           <a href="https://github.com/yourisamut/TPspemathsterm/blob/main/TP%20Logarithme%20ne%CC%81pe%CC%81rien.ipynb" class="card-link" target="_blank" rel="noopener"><i class="fa fa-github" style="margin-right:5px;"></i>Voir sur GitHub →</a>
         </div>
-
         <div class="formulaire-card">
           <div class="card-number">TP 05</div>
           <div class="card-title">Dichotomie</div>
           <p class="card-desc">Implémentation de l'algorithme de dichotomie pour la recherche de zéros de fonctions continues sur un intervalle.</p>
           <a href="https://github.com/yourisamut/TPspemathsterm/blob/main/TP%20Dichotomie.ipynb" class="card-link" target="_blank" rel="noopener"><i class="fa fa-github" style="margin-right:5px;"></i>Voir sur GitHub →</a>
         </div>
-
         <div class="formulaire-card">
           <div class="card-number">TP 06</div>
           <div class="card-title">Triangle de Pascal</div>
           <p class="card-desc">Construction et affichage du triangle de Pascal, exploration des coefficients binomiaux et de leurs propriétés.</p>
           <a href="https://github.com/yourisamut/TPspemathsterm/blob/main/TP%20Combinatoire%20et%20coefficients%20binomiaux.ipynb" class="card-link" target="_blank" rel="noopener"><i class="fa fa-github" style="margin-right:5px;"></i>Voir sur GitHub →</a>
         </div>
-
       </div>
     </div>
 
   </div>
 </div>
 
-
 <script>
+fetch('/sidebar.html')
+  .then(res => res.text())
+  .then(html => { document.getElementById('sidebar-container').innerHTML = html; })
+  .catch(err => console.error('Erreur chargement sidebar :', err));
+
+function w3_open() { document.getElementById("mySidebar").style.display="block"; document.getElementById("sidebarOverlay").style.display="block"; }
+function w3_close() { document.getElementById("mySidebar").style.display="none"; document.getElementById("sidebarOverlay").style.display="none"; }
+function toggleDropdown(id, btn) {
+  var el = document.getElementById(id);
+  var isOpen = el.style.display === "block";
+  document.querySelectorAll('.dropdown-container').forEach(function(d) { d.style.display="none"; });
+  document.querySelectorAll('.dropdown-btn').forEach(function(b) { b.classList.remove('open'); });
+  if (!isOpen) { el.style.display="block"; btn.classList.add('open'); }
+}
 function toggleAccord(header) {
   var body = header.nextElementSibling;
   var isOpen = body.style.display === 'block';
   var allBodies = header.closest('[id^="tab-"]').querySelectorAll('.accord-body');
-  allBodies.forEach(function(b) { b.style.display = 'none'; });
+  allBodies.forEach(function(b) { b.style.display='none'; });
   if (!isOpen) {
-    body.style.display = 'block';
+    body.style.display='block';
     var iframe = body.querySelector('iframe');
-    if (iframe && !iframe.src) {
-      iframe.src = iframe.dataset.src;
-    }
+    if (iframe && !iframe.src) { iframe.src = iframe.dataset.src; }
   }
 }
-
 function switchTab(tab) {
-  document.getElementById('tab-td').style.display = tab === 'td' ? 'block' : 'none';
-  document.getElementById('tab-chapitres').style.display = tab === 'chapitres' ? 'block' : 'none';
-  document.getElementById('btn-td').style.background = tab === 'td' ? '#111' : '#ccc';
-  document.getElementById('btn-td').style.color = tab === 'td' ? '#fff' : '#111';
-  document.getElementById('btn-chapitres').style.background = tab === 'chapitres' ? '#111' : '#ccc';
-  document.getElementById('btn-chapitres').style.color = tab === 'chapitres' ? '#fff' : '#111';
-}
-
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("sidebarOverlay").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("sidebarOverlay").style.display = "none";
-}
-
-function toggleDropdown(id, btn) {
-  var el = document.getElementById(id);
-  var isOpen = el.style.display === "block";
-  document.querySelectorAll('.dropdown-container').forEach(function(d) {
-    d.style.display = "none";
-  });
-  document.querySelectorAll('.dropdown-btn').forEach(function(b) {
-    b.classList.remove('open');
-  });
-  if (!isOpen) {
-    el.style.display = "block";
-    btn.classList.add('open');
-  }
+  document.getElementById('tab-td').style.display = tab==='td' ? 'block' : 'none';
+  document.getElementById('tab-chapitres').style.display = tab==='chapitres' ? 'block' : 'none';
+  document.getElementById('btn-td').style.background = tab==='td' ? '#111' : '#ccc';
+  document.getElementById('btn-td').style.color = tab==='td' ? '#fff' : '#111';
+  document.getElementById('btn-chapitres').style.background = tab==='chapitres' ? '#111' : '#ccc';
+  document.getElementById('btn-chapitres').style.color = tab==='chapitres' ? '#fff' : '#111';
 }
 </script>
-
 </body>
 </html>

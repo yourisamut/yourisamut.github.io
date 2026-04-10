@@ -17,7 +17,6 @@ body {
   background-color: #f4f4f4;
 }
 
-/* Sidebar */
 .w3-sidebar {
   width: 200px;
   background: #ffffff;
@@ -57,7 +56,6 @@ body {
   #mySidebar { padding-top: 70px; }
 }
 
-/* ── Mobile : même recette que outils-mathematiques.html ── */
 @media (max-width: 992px) {
   html, body {
     overflow-x: hidden !important;
@@ -73,13 +71,11 @@ body {
     padding: 16px 8px !important;
   }
 
-  /* Conteneur de l'iframe : overflow hidden = coupe le débordement PDF.js */
   .cv-body {
     width: 100% !important;
     overflow: hidden !important;
   }
 
-  /* iframe pleine largeur, ratio A4 exact (297/210 = 1.414) */
   .cv-body iframe {
     display: block !important;
     width: 100% !important;
@@ -88,7 +84,6 @@ body {
   }
 }
 
-/* Sidebar links */
 .w3-sidebar a.w3-bar-item {
   color: #333;
   font-size: 14px;
@@ -185,7 +180,6 @@ hr.section-rule {
 h2 { color: #111; }
 p { color: #444; line-height: 1.7; }
 
-/* Desktop : liseuse centrée 555px */
 .cv-body {
   max-width: 555px;
   margin: 0 auto;
@@ -198,70 +192,8 @@ p { color: #444; line-height: 1.7; }
 </head>
 <body>
 
-<!-- Sidebar -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-top" style="z-index:3;" id="mySidebar">
-  <div class="sidebar-title w3-hide-small">
-    <a href="index.html" style="display:block; padding:20px 0; text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" style="width:80px; height:96px; display:block; margin:0 auto;">
-        <text x="50" y="105" font-family="serif" font-size="115" text-anchor="middle" fill="#1a1a1a">Ψ</text>
-      </svg>
-    </a>
-  </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('prepDropdown', this)">
-    Classe préparatoire <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="prepDropdown" class="dropdown-container">
-    <a href="cpge/cours.html" class="w3-bar-item w3-button" onclick="w3_close()">Notes de cours et TD</a>
-    <a href="cpge/kholles.html" class="w3-bar-item w3-button" onclick="w3_close()">Programmes de kholles</a>
-    <a href="cpge/devoirs.html" class="w3-bar-item w3-button" onclick="w3_close()">Devoirs</a>
-  </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('upecDropdown', this)">
-    UPEC – EPISEN <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="upecDropdown" class="dropdown-container">
-    <a href="episen/outils-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Outils mathématiques S1</a>
-    <a href="episen/analyses-numeriques.html" class="w3-bar-item w3-button" onclick="w3_close()">Analyse numérique S2</a>
-  </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('diversDropdown', this)">
-    Divers <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="diversDropdown" class="dropdown-container">
-    <a href="divers/formulaires-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Formulaires mathématiques</a>
-    <a href="divers/papiers-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Papiers de mathématiques</a>
-    <a href="divers/liens-utiles.html" class="w3-bar-item w3-button" onclick="w3_close()">Liens utiles</a>
-    <a href="divers/soit-ou-soient.html" class="w3-bar-item w3-button" onclick="w3_close()">Soit ou soient ?</a>
-  </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('archivesDropdown', this)">
-    Archives de lycée <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="archivesDropdown" class="dropdown-container">
-    <a href="archives/terminale-specialite.html" class="w3-bar-item w3-button" onclick="w3_close()">Terminale spécialité</a>
-  </div>
-
-  <a href="a-propos.html" onclick="w3_close()" class="w3-bar-item w3-button nav-link">À propos</a>
-</nav>
-
-<!-- Bande décorative verticale -->
-<div id="decorative-band">
-  <img src="deco/bandeco.jpg">
-</div>
-
-<!-- Topbar mobile -->
-<div class="w3-top w3-hide-large" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#fff; border-bottom:1px solid #ddd; z-index:4;">
-  <a href="index.html" style="font-size:1.5em; text-decoration:none; color:#1a1a1a;">Ψ</a>
-  <button onclick="w3_open()" style="background:none; border:none; cursor:pointer; padding:4px;">
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-  </button>
-</div>
-
-<!-- Overlay mobile -->
-<div id="sidebarOverlay" onclick="w3_close()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:2; background:rgba(0,0,0,0.3);"></div>
+<!-- Sidebar chargée dynamiquement -->
+<div id="sidebar-container"></div>
 
 <!-- Contenu principal -->
 <div class="w3-padding-large" id="main">
@@ -270,7 +202,6 @@ p { color: #444; line-height: 1.7; }
     <h2>Curriculum vitae</h2>
     <hr class="section-rule">
 
-    <!-- Même structure que accord-body dans outils-mathematiques.html -->
     <div class="cv-body">
       <iframe
         src="assets/pdfjs/web/viewer.html?file=../../../docs/CV.pdf"
@@ -283,8 +214,14 @@ p { color: #444; line-height: 1.7; }
 
 </div>
 
-
 <script>
+fetch('/sidebar.html')
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('sidebar-container').innerHTML = html;
+  })
+  .catch(err => console.error('Erreur chargement sidebar :', err));
+
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("sidebarOverlay").style.display = "block";

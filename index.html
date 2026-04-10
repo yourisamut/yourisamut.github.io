@@ -193,110 +193,51 @@ p {
     margin-top: 6em;
   }
 }
-
 </style>
 </head>
 <body>
 
-<!-- Sidebar -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-top" style="z-index:3;" id="mySidebar">
-  <div class="sidebar-title w3-hide-small">
-    <a href="index.html" style="display:block; padding:20px 0; text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" style="width:80px; height:96px; display:block; margin:0 auto;">
-        <!-- Ψ (Psi) en police système, rendu comme un glyphe plein -->
-        <text x="50" y="105" font-family="serif" font-size="115" text-anchor="middle" fill="#1a1a1a">Ψ</text>
-      </svg>
-    </a>
-  </div>
-
-  <!-- Classe préparatoire dropdown -->
-  <button class="dropdown-btn" onclick="toggleDropdown('prepDropdown', this)">
-    Classe préparatoire <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="prepDropdown" class="dropdown-container">
-    <a href="cpge/cours.html" class="w3-bar-item w3-button" onclick="w3_close()">Notes de cours et TD</a>
-    <a href="cpge/kholles.html" class="w3-bar-item w3-button" onclick="w3_close()">Programmes de kholles</a>
-    <a href="cpge/devoirs.html" class="w3-bar-item w3-button" onclick="w3_close()">Devoirs</a>
-  </div>
-
-<button class="dropdown-btn" onclick="toggleDropdown('upecDropdown', this)">
-  UPEC – EPISEN <i class="fa fa-caret-down"></i>
-</button>
-<div id="upecDropdown" class="dropdown-container">
-  <a href="episen/outils-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Outils mathématiques S1</a>
-  <a href="episen/analyses-numeriques.html" class="w3-bar-item w3-button" onclick="w3_close()">Analyse numérique S2</a>
-</div>
-
-  <!-- Divers dropdown -->
-  <button class="dropdown-btn" onclick="toggleDropdown('diversDropdown', this)">
-    Divers <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="diversDropdown" class="dropdown-container">
-    <a href="divers/formulaires-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Formulaires mathématiques</a>
-    <a href="divers/papiers-mathématiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Papiers de mathématiques</a>
-    <a href="divers/liens-utiles.html" class="w3-bar-item w3-button" onclick="w3_close()">Liens utiles</a>
-    <a href="divers/soit-ou-soient.html" class="w3-bar-item w3-button" onclick="w3_close()">Soit ou soient ?</a>
-  </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('archivesDropdown', this)">
-  Archives de lycée <i class="fa fa-caret-down"></i>
-</button>
-<div id="archivesDropdown" class="dropdown-container">
-  <a href="archives/terminale-specialite.html" class="w3-bar-item w3-button" onclick="w3_close()">Terminale spécialité</a>
-</div>
-
-  <a href="a-propos.html" onclick="w3_close()" class="w3-bar-item w3-button nav-link">À propos</a>
-</nav>
-
-<!-- Bande décorative verticale -->
-<div id="decorative-band">
-  <img src="deco/bandeco.jpg">
-</div>
-
-<!-- Topbar mobile (cachée sur grands écrans) -->
-<div class="w3-top w3-hide-large" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#fff; border-bottom:1px solid #ddd; z-index:4;">
-  <a href="index.html" style="font-size:1.5em; text-decoration:none; color:#1a1a1a;">Ψ</a>
-  <button onclick="w3_open()" style="background:none; border:none; cursor:pointer; padding:4px;">
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-    <span style="display:block; width:22px; height:2px; background:#1a1a1a; margin:5px 0;"></span>
-  </button>
-</div>
-
-<!-- Overlay mobile pour fermer la sidebar -->
-<div id="sidebarOverlay" onclick="w3_close()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:2; background:rgba(0,0,0,0.3);"></div>
+<!-- Sidebar chargée dynamiquement -->
+<div id="sidebar-container"></div>
 
 <!-- Contenu principal -->
 <div class="w3-padding-large" id="main">
 
   <div class="content-section" id="about" style="display:flex; align-items:flex-start; gap:1.5rem; flex-wrap:wrap;">
 
-  <img src="deco/photomoi.jpeg" alt="Youri Samut"
-       style="width:90px; height:90px; object-fit:cover; border-radius:50%; flex-shrink:0; border:0.5px solid #ddd;">
+    <img src="deco/photomoi.jpeg" alt="Youri Samut"
+         style="width:90px; height:90px; object-fit:cover; border-radius:50%; flex-shrink:0; border:0.5px solid #ddd;">
 
-  <div style="flex:1; min-width:180px;">
-    <p style="margin:0 0 2px; font-size:1.2em; font-weight:500;">Youri Samut</p>
-    <p style="margin:0 0 12px; font-size:0.9em; color:#777;">Professeur agrégé de mathématiques en classe préparatoire PTSI</p>
-    <p style="margin:0 0 14px; line-height:1.6;">
-      Ce site est consacré aux cours de mathématiques que je dispense en classe préparatoire et en école d'ingénieurs.
-      J'y propose des ressources pédagogiques accessibles à la fois aux étudiants et aux collègues intéressés.
-    </p>
-    <div style="display:flex; gap:14px; align-items:center;">
-      <a href="mailto:samut.youri@hotmail.fr" title="M'envoyer un e-mail" style="color:#888; text-decoration:none;">
-        <i class="fa fa-envelope" style="font-size:1.1em;"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/youri-samut-8949b3149/" title="LinkedIn" target="_blank" style="color:#888; text-decoration:none;">
-        <i class="fa fa-linkedin-square" style="font-size:1.1em;"></i>
-      </a>
+    <div style="flex:1; min-width:180px;">
+      <p style="margin:0 0 2px; font-size:1.2em; font-weight:500;">Youri Samut</p>
+      <p style="margin:0 0 12px; font-size:0.9em; color:#777;">Professeur agrégé de mathématiques en classe préparatoire PTSI</p>
+      <p style="margin:0 0 14px; line-height:1.6;">
+        Ce site est consacré aux cours de mathématiques que je dispense en classe préparatoire et en école d'ingénieurs.
+        J'y propose des ressources pédagogiques accessibles à la fois aux étudiants et aux collègues intéressés.
+      </p>
+      <div style="display:flex; gap:14px; align-items:center;">
+        <a href="mailto:samut.youri@hotmail.fr" title="M'envoyer un e-mail" style="color:#888; text-decoration:none;">
+          <i class="fa fa-envelope" style="font-size:1.1em;"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/youri-samut-8949b3149/" title="LinkedIn" target="_blank" style="color:#888; text-decoration:none;">
+          <i class="fa fa-linkedin-square" style="font-size:1.1em;"></i>
+        </a>
+      </div>
     </div>
+
   </div>
 
 </div>
 
-</div>
-
-
 <script>
+// Chargement de la sidebar partagée
+fetch('/sidebar.html')
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('sidebar-container').innerHTML = html;
+  })
+  .catch(err => console.error('Erreur chargement sidebar :', err));
+
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("sidebarOverlay").style.display = "block";
@@ -310,14 +251,12 @@ function w3_close() {
 function toggleDropdown(id, btn) {
   var el = document.getElementById(id);
   var isOpen = el.style.display === "block";
-  // Fermer tous les dropdowns
   document.querySelectorAll('.dropdown-container').forEach(function(d) {
     d.style.display = "none";
   });
   document.querySelectorAll('.dropdown-btn').forEach(function(b) {
     b.classList.remove('open');
   });
-  // Ouvrir celui cliqué si pas déjà ouvert
   if (!isOpen) {
     el.style.display = "block";
     btn.classList.add('open');
