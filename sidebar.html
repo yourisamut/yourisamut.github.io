@@ -1,3 +1,10 @@
+<!-- Style pour coller le copyright en bas sur mobile -->
+<style>
+  #sidebarContent {
+    flex: 1;
+  }
+</style>
+
 <!-- Sidebar -->
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-top" style="z-index:3;" id="mySidebar">
   <div class="sidebar-title w3-hide-small">
@@ -8,44 +15,73 @@
     </a>
   </div>
 
-  <!-- Classe préparatoire dropdown -->
-  <button class="dropdown-btn" onclick="toggleDropdown('prepDropdown', this)">
-    Classe préparatoire <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="prepDropdown" class="dropdown-container">
-    <a href="/cpge/cours.html" class="w3-bar-item w3-button" onclick="w3_close()">Notes de cours et TD</a>
-    <a href="/cpge/kholles.html" class="w3-bar-item w3-button" onclick="w3_close()">Programmes de kholles</a>
-    <a href="/cpge/devoirs.html" class="w3-bar-item w3-button" onclick="w3_close()">Devoirs</a>
+  <!-- Wrapper du contenu pour le flex -->
+  <div id="sidebarContent">
+    <!-- Classe préparatoire dropdown -->
+    <button class="dropdown-btn" onclick="toggleDropdown('prepDropdown', this)">
+      Classe préparatoire <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="prepDropdown" class="dropdown-container">
+      <a href="/cpge/cours.html" class="w3-bar-item w3-button" onclick="w3_close()">Notes de cours et TD</a>
+      <a href="/cpge/kholles.html" class="w3-bar-item w3-button" onclick="w3_close()">Programmes de kholles</a>
+      <a href="/cpge/devoirs.html" class="w3-bar-item w3-button" onclick="w3_close()">Devoirs</a>
+    </div>
+
+    <button class="dropdown-btn" onclick="toggleDropdown('upecDropdown', this)">
+      UPEC – EPISEN <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="upecDropdown" class="dropdown-container">
+      <a href="/episen/outils-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Outils mathématiques S1</a>
+      <a href="/episen/analyses-numeriques.html" class="w3-bar-item w3-button" onclick="w3_close()">Analyse numérique S2</a>
+    </div>
+
+    <!-- Divers dropdown -->
+    <button class="dropdown-btn" onclick="toggleDropdown('diversDropdown', this)">
+      Divers <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="diversDropdown" class="dropdown-container">
+      <a href="/divers/formulaires-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Formulaires mathématiques</a>
+      <a href="/divers/papiers-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Papiers de mathématiques</a>
+      <a href="/divers/liens-utiles.html" class="w3-bar-item w3-button" onclick="w3_close()">Liens utiles</a>
+      <a href="/divers/soit-ou-soient.html" class="w3-bar-item w3-button" onclick="w3_close()">Soit ou soient ?</a>
+    </div>
+
+    <button class="dropdown-btn" onclick="toggleDropdown('archivesDropdown', this)">
+      Archives <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="archivesDropdown" class="dropdown-container">
+      <a href="/archives/terminale-specialite.html" class="w3-bar-item w3-button" onclick="w3_close()">Terminale spécialité</a>
+    </div>
+
+    <a href="/a-propos.html" onclick="w3_close()" class="w3-bar-item w3-button nav-link">À propos</a>
   </div>
 
-  <button class="dropdown-btn" onclick="toggleDropdown('upecDropdown', this)">
-    UPEC – EPISEN <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="upecDropdown" class="dropdown-container">
-    <a href="/episen/outils-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Outils mathématiques S1</a>
-    <a href="/episen/analyses-numeriques.html" class="w3-bar-item w3-button" onclick="w3_close()">Analyse numérique S2</a>
+  <!-- Copyright mobile -->
+  <div class="w3-hide-large" style="padding:12px 0; text-align:center; font-size:0.65em; color:#bbb; letter-spacing:0.02em;">
+    &copy; <script>document.write(new Date().getFullYear())</script> Tous droits réservés
   </div>
 
-  <!-- Divers dropdown -->
-  <button class="dropdown-btn" onclick="toggleDropdown('diversDropdown', this)">
-    Divers <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="diversDropdown" class="dropdown-container">
-    <a href="/divers/formulaires-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Formulaires mathématiques</a>
-    <a href="/divers/papiers-mathematiques.html" class="w3-bar-item w3-button" onclick="w3_close()">Papiers de mathématiques</a>
-    <a href="/divers/liens-utiles.html" class="w3-bar-item w3-button" onclick="w3_close()">Liens utiles</a>
-    <a href="/divers/soit-ou-soient.html" class="w3-bar-item w3-button" onclick="w3_close()">Soit ou soient ?</a>
+  <!-- Copyright desktop -->
+  <div class="w3-hide-small" style="position:fixed; bottom:0; width:inherit; padding:12px 0; text-align:center; font-size:0.65em; color:#aaa; letter-spacing:0.02em;">
+    &copy; <script>document.write(new Date().getFullYear())</script> Tous droits réservés
   </div>
-
-  <button class="dropdown-btn" onclick="toggleDropdown('archivesDropdown', this)">
-    Archives <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="archivesDropdown" class="dropdown-container">
-    <a href="/archives/terminale-specialite.html" class="w3-bar-item w3-button" onclick="w3_close()">Terminale spécialité</a>
-  </div>
-
-  <a href="/a-propos.html" onclick="w3_close()" class="w3-bar-item w3-button nav-link">À propos</a>
 </nav>
+
+<!-- Script : après w3_open, on force le flex sur la sidebar mobile -->
+<script>
+  (function() {
+    var _w3_open = window.w3_open;
+    window.w3_open = function() {
+      _w3_open();
+      var sidebar = document.getElementById('mySidebar');
+      if (window.innerWidth <= 992) {
+        sidebar.style.display = 'flex';
+        sidebar.style.flexDirection = 'column';
+        sidebar.style.minHeight = '100vh';
+      }
+    };
+  })();
+</script>
 
 <!-- Bande décorative verticale -->
 <div id="decorative-band">
