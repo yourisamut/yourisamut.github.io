@@ -112,6 +112,58 @@ p { color:#444; line-height:1.7; }
   </div>
 </div>
 
+<style>
+#password-overlay {
+  position:fixed; top:0; left:260px; right:0; bottom:0; background:#f4f4f4;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  z-index:3;
+}
+@media only screen and (max-width:992px) {
+  #password-overlay { left:0; top:50px; z-index:1; }
+}
+#password-overlay h2 { color:#111; margin-bottom:0.5em; }
+#password-overlay p { color:#666; margin-bottom:1.5em; font-size:0.95em; }
+#password-overlay input {
+  padding:0.6em 1em; font-size:1em; border:1px solid #ccc;
+  border-radius:6px; margin-bottom:0.8em; width:min(220px, 80vw); text-align:center;
+  font-family:"Computer Modern Bright", sans-serif;
+}
+#password-overlay button {
+  padding:0.6em 1.6em; background:#111; color:#fff;
+  border:none; border-radius:6px; font-size:1em; cursor:pointer;
+}
+#password-error { color:red; font-size:0.9em; margin-top:0.6em; display:none; }
+</style>
+
+<div id="password-overlay">
+  <h2>Accès protégé</h2>
+  <p>Entrez le mot de passe pour accéder aux devoirs.</p>
+  <input type="password" id="password-input" placeholder="Mot de passe"
+    onkeydown="if(event.key==='Enter') checkPassword()">
+  <button onclick="checkPassword()">Entrer</button>
+  <div id="password-error">Mot de passe incorrect.</div>
+</div>
+
+<script>
+function checkPassword() {
+  var input = document.getElementById('password-input').value;
+  var hash = 0;
+  for (var i = 0; i < input.length; i++) {
+    hash = (Math.imul(31, hash) + input.charCodeAt(i)) | 0;
+  }
+  if (hash === -1401434985) {
+    document.getElementById('password-overlay').style.display = 'none';
+    sessionStorage.setItem('auth', '1');
+  } else {
+    document.getElementById('password-error').style.display = 'block';
+    document.getElementById('password-input').value = '';
+  }
+}
+if (sessionStorage.getItem('auth') === '1') {
+  document.getElementById('password-overlay').style.display = 'none';
+}
+</script>
+
 <script>
 fetch('/sidebar.html')
   .then(res => res.text())
